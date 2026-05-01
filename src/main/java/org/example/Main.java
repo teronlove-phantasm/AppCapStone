@@ -1,8 +1,8 @@
 package org.example;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -54,8 +54,21 @@ public class Main {
         System.out.print("Vendor: ");
         String vendor = scanner.nextLine();
 
-        System.out.print("Amount: ");
-        double amount = Double.parseDouble(scanner.nextLine());
+
+        double amount = 0;
+        boolean valid = false;
+
+        while (!valid) {
+            System.out.print("Amount: ");
+            String input = scanner.nextLine();
+
+            try {
+                amount = Double.parseDouble(input);
+                valid = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
 
         if (!isDeposit) {
             amount = amount * -1;
@@ -150,7 +163,6 @@ public class Main {
 
                 case "0":
                     viewingReports = false;
-
                     break;
 
                 default:
